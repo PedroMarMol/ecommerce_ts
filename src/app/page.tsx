@@ -1,34 +1,47 @@
 "use client"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
+interface User {
+  nick: string
+  avatar: string
+  streakMonths: number
+  description?: string
+}
+
+const INITIAL_STATE = [
+  {
+    nick: 'martwix12',
+    streakMonths: 10,
+    avatar: 'https://i.pravatar.cc/150?u=martwix12',
+    description: 'martwix12 es muy disciplinado'
+  },
+  {
+    nick: 'naragon2',
+    streakMonths: 0,
+    avatar: 'https://i.pravatar.cc/150?u=naragon2',
+    description: 'naragon2 es muy despistado'
+  },
+  {
+    nick: 'mra360',
+    streakMonths: 4,
+    avatar: 'https://i.pravatar.cc/150?u=mra360',
+  }
+]
+
 export default function Home() {
-  const [subs, setSubs] = useState([
-    {
-      nick: 'martwix12',
-      streakMonths: 10,
-      avatar: 'https://i.pravatar.cc/150?u=martwix12',
-      description: 'martwix12 es muy disciplinado'
-    },
-    {
-      nick: 'naragon2',
-      streakMonths: 0,
-      avatar: 'https://i.pravatar.cc/150?u=naragon2',
-      description: 'naragon2 es muy despistado'
-    },
-    {
-      nick: 'mra360',
-      streakMonths: 4,
-      avatar: 'https://i.pravatar.cc/150?u=mra360',
-    }
-  ])
+  const [users, setUsers] = useState<Array<User>>([])
   
+  useEffect(() => {
+    setUsers(INITIAL_STATE)
+  }, [])
+
   return (
     <div className='App' >
       <h1>Usuarios en racha</h1>
       <ul>
         {
-          subs.map(user => {
+          users.map(user => {
             return (
               <li key={user.nick}>
                 <Image src={user.avatar} alt={`Avatar for ${user}`} width={150} height={150} />
