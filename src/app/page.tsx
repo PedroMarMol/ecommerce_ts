@@ -9,6 +9,11 @@ interface User {
   description?: string
 }
 
+interface AppState {
+  users: Array<User>
+  newUsersNumber: number
+}
+
 const INITIAL_STATE = [
   {
     nick: 'martwix12',
@@ -30,7 +35,8 @@ const INITIAL_STATE = [
 ]
 
 export default function Home() {
-  const [users, setUsers] = useState<Array<User>>([])
+  const [users, setUsers] = useState<AppState["users"]>([])
+  const [newUsersNumber, setNewUserNumber] = useState<AppState["newUsersNumber"]>(0)
   
   useEffect(() => {
     setUsers(INITIAL_STATE)
