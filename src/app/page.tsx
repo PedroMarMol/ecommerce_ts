@@ -1,7 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
-
+import List from './components/List'
 interface User {
   nick: string
   avatar: string
@@ -45,19 +44,7 @@ export default function Home() {
   return (
     <div className='App' >
       <h1>Usuarios en racha</h1>
-      <ul>
-        {
-          users.map(user => {
-            return (
-              <li key={user.nick}>
-                <Image src={user.avatar} alt={`Avatar for ${user}`} width={150} height={150} />
-                <h4>{user.nick} (<small>{user.streakMonths}</small>)</h4>
-                <p>{user.description?.substring(0, 100)}</p>
-              </li>
-            )
-          })
-        }
-      </ul>
+      <List users={users} />
     </div>
     )
 }
