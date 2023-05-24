@@ -1,12 +1,8 @@
 "use client"
 import { useState, useEffect } from 'react'
 import List from './components/List'
-interface User {
-  nick: string
-  avatar: string
-  streakMonths: number
-  description?: string
-}
+import Form from './components/Form'
+import { User } from './types'
 
 interface AppState {
   users: Array<User>
@@ -45,6 +41,7 @@ export default function Home() {
     <div className='App' >
       <h1>Usuarios en racha</h1>
       <List users={users} />
+      <Form />
     </div>
     )
 }

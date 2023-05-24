@@ -1,12 +1,7 @@
 import Image from "next/image"
-
+import { User } from "../types"
 interface Props {
-  users: Array<{
-    nick: string
-    avatar: string
-    streakMonths: number
-    description?: string
-  }>
+  users: Array<User>
 }
 
 const List = ({users}: Props) => {
